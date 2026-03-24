@@ -17,7 +17,12 @@ TODO: Describe this plugin
 == Changelog ==
 
 = 1.0.0 =
-Released date: June 27, 2025
+Released date: March 24, 2026
+
+* Fix PHP warnings: end() on non-variable in Index.php and Integration.php
+* Fix PHP warning: undefined variable $max_links in Generator.php
+* Fix PHP warning: null dereference on post_type in Generator.php
+* Fix PHP warning: null array access in Indexes/Abbreviated.php
 
 == Copyright ==
 
