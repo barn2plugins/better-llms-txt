@@ -109,13 +109,14 @@ final class Generator {
 			$collection->per_page = $this->max_links;
 		}
 
+		$max_links = 0;
 		if ( ! empty( $this->max_links ) ) {
 			$max_links = max( $this->max_links, $collection->sticky_count );
 		}
 
 		$this->open_buffer();
 
-		$title = str_replace( '${section_title}', $template_args['section_title'] ?? $this->post_type->label, $this->section_title_template( $template_args['level'] ?? 2 ) );
+		$title = str_replace( '${section_title}', $template_args['section_title'] ?? ( $this->post_type?->label ?? '' ), $this->section_title_template( $template_args['level'] ?? 2 ) );
 		$this->add_line( $title );
 
 		$template = $this->link_line_template();

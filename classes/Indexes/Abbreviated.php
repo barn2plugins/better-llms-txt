@@ -77,15 +77,15 @@ class Abbreviated extends Index {
 
 		$all_post_types = get_post_types( [], 'objects' );
 
-		$post_types = plugin()->get_setting( key: 'post_types' );
-		$taxonomies = plugin()->get_setting( key: 'taxonomies' );
+		$post_types = plugin()->get_setting( key: 'post_types' ) ?: [];
+		$taxonomies = plugin()->get_setting( key: 'taxonomies' ) ?: [];
 
 		$ordering = 0;
 
 		foreach( $all_post_types as $post_type ) {
 			$post_type_name = $post_type->name;
 
-			if ( $post_types[ $post_type_name ]['enabled'] ?? false ) {
+			if ( is_array( $post_types[ $post_type_name ] ?? null ) && ( $post_types[ $post_type_name ]['enabled'] ?? false ) ) {
 				$label = $post_types[ $post_type_name ]['label'] ?: $post_type->label;
 				plugin()->settings()->add_field( [
 					'name'        => "{$this->settings_index}.ordering.{$post_type_name}",
@@ -123,7 +123,7 @@ class Abbreviated extends Index {
 			foreach( $all_taxonomies as $taxonomy ) {
 				$taxonomy_name = $taxonomy->name;
 
-				if ( $taxonomies[ $taxonomy_name ]['enabled'] ?? false ) {
+				if ( is_array( $taxonomies[ $taxonomy_name ] ?? null ) && ( $taxonomies[ $taxonomy_name ]['enabled'] ?? false ) ) {
 					$label = $taxonomies[ $taxonomy_name ]['label'] ?: $taxonomy->label;
 					plugin()->settings()->add_field( [
 						'name'         => "{$this->settings_index}.ordering.{$post_type_name}_{$taxonomy_name}",

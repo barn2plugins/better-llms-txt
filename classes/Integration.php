@@ -45,7 +45,8 @@ class Integration extends Service {
 		}
 
 		if ( str_contains( $field['name'], '.tax_' ) ) {
-			$taxonomy = end( explode( '_', $field['name'] ) );
+			$field_name_parts = explode( '_', $field['name'] );
+			$taxonomy = end( $field_name_parts );
 			foreach( $values as &$value ) {
 				$term = get_term_by( 'term_id', $value, $taxonomy );
 				$value = [
