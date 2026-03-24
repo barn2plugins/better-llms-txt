@@ -53,7 +53,8 @@ class Index {
 		$this->section_name = sanitize_title( $this->filename . '-output' );
 
 		if ( empty( $args['index_slug'] ) ) {
-			$args['index_slug'] = end( explode( "\\", __CLASS__ ) );
+			$class_parts = explode( "\\", __CLASS__ );
+			$args['index_slug'] = end( $class_parts );
 		}
 
 		$this->index_slug = sanitize_title( $args['index_slug'] );
